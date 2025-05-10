@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Strona główna</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="test">
+<body id="body">
+    <img src="logo.png" alt="Logo 'Tweeter-a'" width="200" height="200">
 
+    <div class = "dodaj_post">
+        Tytuł: <input type="text" id="post_title"> <br>
+        Treść: <br>
+        <textarea class="content" id="post_content" placeholder="Tu wpisz treść"></textarea>
+        <br>
+        <button onclick="DodajPostPrzycisk()">
+            Dodaj Tweet
+        </button>
     </div>
 
-    <button onclick="Funkcja()">
-        Klik!
+    <button onclick="ShowPosts()">
+        Pokaż posty
     </button>
 
-    <form>
-        <input type="text" id="tekst1">
-    </form>
+
+    <div id="posty">
+    </div>
     
 </body>
 <script src="app.js"></script>
