@@ -37,5 +37,5 @@ function DodajPost(title, content){
 }
 
 function DodajPostPrzycisk(){
-    DodajPost(document.getElementById('post_title').value, document.getElementById('post_content').value);
+    DodajPost(document.getElementById('post_author').value, document.getElementById('post_content').value);
 }

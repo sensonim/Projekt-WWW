@@ -9,29 +9,86 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body id="body">
-    <img src="logo.png" alt="Logo 'Tweeter-a'" width="150" height="150">
+    <!-- sidebar-->
+    <div class="sidebar">
+        <img class="logo" src="logo.png" alt="Logo 'Tweeter-a'" width="150" height="150">
 
-    <div class = "dark_mode_toggle">
-        <i class="material-icons" style="font-size: 30px;">dark_mode</i>
+        <a href="index.html">
+        <div class="sidebarOption active">
+            <span class="material-icons"> home </span>
+            <h2>Home</h2>
+        </div>
+        </a>
+
+        <div class="sidebarOption">
+            <span class="material-icons"> search </span>
+            <h2>Search</h2>
+        </div>
+
+        <a href="profile.html">
+        <div class="sidebarOption">
+            <span class="material-icons"> person </span>
+            <h2>Profile</h2>
+        </div>
+        </a>
+
+        <button class="sidebar_tweet">Tweet</button>
     </div>
-    
-    <div class = "dodaj_post">
-        Tytuł: <input type="text" id="post_title"> <br>
-        Treść: <br>
-        <textarea class="content" id="post_content" placeholder="Tu wpisz treść"></textarea>
-        <br>
-        <button onclick="DodajPostPrzycisk()">
-            Dodaj Tweet
+    <!-- sidebar-->
+
+    <!-- feed-->
+    <div class="feed">
+        <div class="feed_header">
+            <h2>Home</h2>
+        </div>
+        <!-- TweetBox-->
+         <div class="tweetBox">
+            <form>
+            <div class = "dodaj_post">
+                <input class="author" type="text" id="post_author" placeholder="Kto pisze?">
+                <input class="content" type="text" id="post_content" placeholder="Jak tam leci?">
+            </div>
+            <button class="tweetBoxButton" onclick="DodajPostPrzycisk()">
+                Dodaj Tweet
+            </button>
+            </form>
+        </div>
+        <!-- TweetBox-->
+         
+        <!-- Posts-->
+        <button class="tweetShowButton" onclick="ShowPosts()">
+                Pokaż Tweety
         </button>
+        <div id="posty">
+            <div class="post_avatar">
+                <img src="blank_avatar.jpg" alt="">
+            </div>
+            
+            <div class="post_body">
+                <div class="post_header">
+                    <div class="post_header_text">
+                        <h3>Kazaro</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Posts-->
     </div>
+    <!-- feed-->
 
-    <button onclick="ShowPosts()">
-        Pokaż posty
-    </button>
+    <!-- Widgets-->
+    <div class="widgets">
+        <div class="widgets_input">
+            <span class="material-icons widgets_searchIcon"> search </span>
+            <input type="text" placeholder="Przeszukaj Tweeter">
+        </div>
 
 
-    <div id="posty">
+        <div class="widgets_widgetContainer">
+            <h2>Co się dzieje?</h2>
+        </div>
     </div>
+    <!-- Widgets-->
     
 </body>
 <script src="app.js"></script>
