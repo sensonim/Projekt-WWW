@@ -217,11 +217,3 @@ body {
     font-size: 18px;
     font-weight: 800;
 }
-
-.dark_mode_toggle {
-    position: fixed; 
-    top: 10px; 
-    right: 10px; 
-    cursor: pointer; 
-    font-size: 30px; 
-}
