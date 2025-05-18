@@ -60,8 +60,7 @@ body {
   padding: 0 10px;
   background: var(--back-color);
   color: var(--text-color);
-  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Linki */
