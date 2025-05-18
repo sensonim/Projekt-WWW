@@ -65,6 +65,10 @@ async function ShowPosts(){
                     <div class="post_content_text">
                         <p>${post.content}</p>
                     </div>
+                    <div class="post_likes">
+                        <button onclick="LikePost(${post.id})">❤️</button>
+                        <span id="like-count-${post.id}">${post.likes}</span> polubień
+                    </div>
                 </div>
             </div>
         </div>`;
@@ -78,7 +82,8 @@ function DodajPost(title, content){
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
             title: title,
-            content: content
+            content: content,
+            likes: 0
         })
      });
 }
