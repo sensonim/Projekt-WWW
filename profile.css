@@ -16,6 +16,11 @@ body {
     cursor: pointer;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
+
 .sidebar a{
     text-decoration: none;
     color: black;
@@ -81,6 +86,7 @@ body {
     border-right: 1px solid var(--twitter-background-color);
     min-width: fit-content;
     overflow-y: scroll;
+    width: 100%;
 }
 
 .profile_screen::-webkit-scrollbar{
@@ -115,11 +121,10 @@ body {
 
 .profile_line{
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     justify-content: space-between;
     position: relative;
     padding: 20px;
-    border: 1px solid #ccc;
 }
 
 .profile_avatar{
@@ -131,7 +136,7 @@ body {
     width: 25%;
     margin-bottom: 12px;
     margin-top: -15%;
-    padding-left: 20px;
+    padding-left: 8px;
     box-sizing: border-box;
     flex-basis: auto;
     position: relative;
@@ -163,7 +168,7 @@ body {
     align-items: stretch;
     display: block;
     flex-direction: row;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     margin-top: 4px;
     margin-right: 8px;
     padding-left: 20px;
@@ -179,6 +184,7 @@ body {
     flex: 1;
     display: block;
     width: 100%;
+    padding-left: 12px;
 }
 
 .joined {
@@ -193,6 +199,7 @@ body {
     width: 100%;
     flex: 1;
     padding-top: 3%;
+    padding-left: 12px;
 }
 
 .joined .material-icons{
@@ -209,4 +216,40 @@ body {
 .joined .date{
     text-align: inherit;
     display: inline-block;
+}
+
+.bottomBar{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+
+.bottomBarOption{
+    padding: 12px 20px;
+    cursor: pointer;
+    color: #536471;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+    flex: 1;
+}
+
+.bottomBarOption.active{
+    color: #000;
+    font-weight: bold;
+    border-bottom: 3px solid var(--twitter-color);
+}
+
+.bottomBarOption h2{
+    font-weight: 800;
+    font-size: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.bottomBarOption:hover{
+    background-color: #f5f8fa;
+    color: var(--twitter-color);
+    transition: color 100ms ease-out;
 }
