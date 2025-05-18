@@ -146,7 +146,7 @@ body {
     height: 40px;
 }
 
-.posty{
+#posty{
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid var(--twitter-background-color);
@@ -217,3 +217,4 @@ body {
     font-size: 18px;
     font-weight: 800;
 }
+
