@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klon twittera</title>
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="icon" href="ikona.ico" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <!-- sidebar-->
+    <div class="sidebar">
+      <img
+        class="logo"
+        src="logo.png"
+        alt="Logo 'Tweeter-a'"
+        width="150"
+        height="150"
+      />
+
+      <a href="index.html">
+        <div class="sidebarOption">
+          <span class="material-icons"> home </span>
+          <h2>Home</h2>
+        </div>
+      </a>
+
+      <div class="sidebarOption">
+        <span class="material-icons"> search </span>
+        <h2>Search</h2>
+      </div>
+
+      <a href="profile.html">
+        <div class="sidebarOption active">
+          <span class="material-icons"> person </span>
+          <h2>Profile</h2>
+        </div>
+      </a>
+
+      <button class="sidebar_tweet">Tweet</button>
+    </div>
+    <!-- sidebar-->
+    <!-- Profile-->
+    <div class="profile_screen">
+        <!-- header-->
+      <div class="profile_header">
+        <a href="index.html">
+          <span class="material-icons"> arrow_back </span>
+        </a>
+        <h2>Just a Chill Guy</h2>
+      </div>
+      <!-- header-->
+      <div class="profile_background"></div>
+      <div class="profile_info">
+        <div class="profile_line">
+            <!-- Profile picture-->
+          <div class="profile_avatar">
+            <img
+              src="https://abs.twimg.com/sticky/default_profile_images/default_profile_200x200.png"
+              alt=""
+            />
+          </div>
+          <!-- Profile picture-->
+          <!-- Dark Mode-->
+          <div class="dark_mode_toggle">
+            <i class="material-icons" style="font-size: 30px">dark_mode</i>
+          </div>
+          <!-- Dark Mode-->
+        </div>
+        <!-- Basic information-->
+        <div class="basic_info">
+          <div class="profile_name">
+            <h2>Just a Chill Guy</h2>
+          </div>
+          <div class="joined">
+            <span class="material-icons">calendar_month</span>
+            <span class="date">Dołączono Maj 2025</span>
+          </div>
+        </div>
+        <!-- Basic information-->
+        <!-- Bottom bar (posts, comments, likes)-->
+        <div class="bottomBar">
+            <a href="profile.html">
+            <div class="bottomBarOption active">
+                <h2>Posty</h2>
+            </div>
+            </a>
+
+            <a href="profile_comments.html">
+            <div class="bottomBarOption">
+                <h2>Comments</h2>
+            </div>
+            </a>
+
+            <a href="profile_likes.html">
+            <div class="bottomBarOption">
+                <h2>Polubienia</h2>
+            </div>
+            </a>
+        </div>
+        <!-- Bottom bar (posts, comments, likes)-->
+      </div>
+    </div>
+    <!-- Profile-->
+  </body>
+</html>
