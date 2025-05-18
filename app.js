@@ -90,7 +90,7 @@ function DodajPost(title, content){
 
 function DodajPostPrzycisk(){
     if (document.getElementById('post_author').value.trim() == "" || document.getElementById('post_content').value.trim() == "")
-        alert("Pole tytuł i autor nie mogą być puste")
+        alert("Pole tytuł i treść nie mogą być puste")
     else
         DodajPost(document.getElementById('post_author').value.trim(), document.getElementById('post_content').value.trim());
 }
