@@ -90,8 +90,26 @@ function DodajPost(title, content){
 
 function DodajPostPrzycisk(){
     if (document.getElementById('post_author').value.trim() == "" || document.getElementById('post_content').value.trim() == "")
-        alert("Pole tytuł i treść nie mogą być puste")
-    else
+        alert("Pole tytuł i treść nie mogą być puste");
+    else{
         DodajPost(document.getElementById('post_author').value.trim(), document.getElementById('post_content').value.trim());
+
+    }
 }
 
+async function LikePost(id) {
+    const post = await FetchData(`/posts/${id}`);
+    const updatedLikes = (post.likes + 1) % 2;
+
+    await FetchData(`/posts/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ likes: updatedLikes })
+    });
+
+    document.getElementById(`like-count-${id}`).textContent = updatedLikes;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    ShowPosts();
+});

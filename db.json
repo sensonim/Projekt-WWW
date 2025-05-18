@@ -17,6 +17,12 @@
       "content": "test",
       "likes": 0,
       "id": 4
+    },
+    {
+      "title": "ja",
+      "content": "piszę",
+      "likes": 1,
+      "id": 5
     }
   ]
 }
