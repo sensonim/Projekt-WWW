@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klon twittera</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="allstyle.css">
     <link rel="icon" href="ikona.ico" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="darkmode.js" defer></script>
 </head>
 <body id="body">
     <!-- sidebar-->
@@ -32,8 +33,7 @@
         </div>
         </a>
 
-        <button class="sidebar_tweet" onclick="WyskakującyFormularz()">Tweet</button>
-
+        <button class="sidebar_tweet" id="goToTweetBox">Tweet</button>
     </div>
     <!-- sidebar-->
 
@@ -47,7 +47,8 @@
             <form>
             <div class = "dodaj_post">
                 <input class="author" type="text" id="post_author" placeholder="Kto pisze?">
-                <input class="content" type="text" id="post_content" placeholder="Jak tam leci?">
+                <textarea class="content" id="post_content" placeholder="Jak tam leci?" maxlength="350"></textarea>
+                <div class="charCount" id="charCount">0 / 350</div>
             </div>
             <button class="tweetBoxButton" onclick="DodajPostPrzycisk()">
                 Dodaj Tweet
@@ -61,17 +62,7 @@
                 Pokaż Tweety
         </button>
         <div id="posty">
-            <div class="post_avatar">
-                <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_200x200.png" alt="">
-            </div>
             
-            <div class="post_body">
-                <div class="post_header">
-                    <div class="post_header_text">
-                        <h3>Kazaro</h3>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- Posts-->
     </div>

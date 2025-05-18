@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Klon twittera</title>
-    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="allstyle.css" />
     <link rel="icon" href="ikona.ico" />
+    <script type="text/javascript" src="darkmode.js" defer></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -41,7 +42,7 @@
         </div>
       </a>
 
-      <button class="sidebar_tweet">Tweet</button>
+      <button class="sidebar_tweet" id="goToTweetBox">Tweet</button>
     </div>
     <!-- sidebar-->
     <!-- Profile-->
@@ -66,9 +67,11 @@
           </div>
           <!-- Profile picture-->
           <!-- Dark Mode-->
-          <div class="dark_mode_toggle">
-            <i class="material-icons" style="font-size: 30px">dark_mode</i>
-          </div>
+          <button id="theme-switch">
+            <div class="dark_mode_toggle">
+              <i class="material-icons" style="font-size: 30px">star_half</i>
+            </div>
+          </button>
           <!-- Dark Mode-->
         </div>
         <!-- Basic information-->
