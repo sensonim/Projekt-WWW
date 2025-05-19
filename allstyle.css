@@ -544,3 +544,42 @@ a,
   align-items: flex-start;
   gap: 10px;
 }
+
+/* Search Feed */
+
+.widgetsFeed {
+  flex: 0.5;
+  min-width: fit-content;
+  overflow-y: scroll;
+  border-right: 1px solid var(--twitter-background-color);
+}
+
+.widgetsFeed::-webkit-scrollbar {
+  display: none;
+}
+
+.widgetsFeed {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.widgetsFeed .widgets_input {
+  display: flex;
+  align-items: center;
+  margin: 10px 0 0 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background: var(--input-background);
+}
+
+.widgetsFeed .widgets_input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: var(--input-background);
+  color: var(--text-color);
+}
+
+.widgetsFeed .widgets_searchIcon {
+  color: var(--search-icon-color);
+}

@@ -163,7 +163,6 @@ function renderPosts (posts) {
   postyDiv.innerHTML += StrukturaPosta(post);
 });
   if (searchInfo) {
-    searchInfo.textContent = `Znaleziono: ${posts.length}`;
     searchInfo.style.display = posts.length ? 'block' : 'none';
   }
 }
