@@ -116,17 +116,17 @@ async function LikePost(id) {
   const post = await FetchData(`/posts/${id}`);
   const updatedLikes = alreadyLiked ? post.likes - 1 : post.likes + 1;
 
-  // Aktualizacja na serwerze
+
   await FetchData(`/posts/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ likes: updatedLikes })
   });
 
-  // Zapisanie lokalnego stanu (true/false)
+
   localStorage.setItem(storageKey, (!alreadyLiked).toString());
 
-  // Aktualizacja licznika
+
   document.getElementById(`like-count-${id}`).textContent = updatedLikes;
 
 
@@ -157,16 +157,9 @@ function renderPosts (posts) {
   if (!posts.length) {
     postyDiv.innerHTML = '<p style="padding:1rem;">Brak wyników</p>';
   }
-  posts.forEach(p => {
-    const postEl = document.createElement('div');
-    postEl.className = 'post';
-    postEl.innerHTML = `
-        <h3 class="post-title">${p.title ?? '(bez tytułu)'}</h3>
-        <p  class="post-content">${p.content ?? ''}</p>
-        <span class="post-author">${p.author ?? 'Anon'}</span>
-    `;
-    postyDiv.appendChild(postEl);
-  });
+  posts.forEach(post => {
+  postyDiv.innerHTML += StrukturaPosta(post);
+});
   if (searchInfo) {
     searchInfo.textContent = `Znaleziono: ${posts.length}`;
     searchInfo.style.display = posts.length ? 'block' : 'none';
@@ -177,7 +170,6 @@ function filterPosts (query) {
 
   const q = query.toLowerCase();
   return allPosts.filter(p =>
-    (p.title   && p.title.toLowerCase().includes(q))   ||
     (p.content && p.content.toLowerCase().includes(q)) ||
     (p.author  && p.author.toLowerCase().includes(q))
   );
