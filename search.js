@@ -1,6 +1,24 @@
 const searchInput = document.getElementById('searchInput');
 const searchInfo = document.getElementById('searchInfo');
 const resultsContainer = document.getElementById('search-posty');
+const goToTweetButton = document.getElementById("goToTweetBox");
+const scrollToTweet = localStorage.getItem("scrollToTweetBox");
+
+if (goToTweetButton) {
+  goToTweetButton.addEventListener("click", () => {
+    localStorage.setItem("scrollToTweetBox", "true");
+    window.location.href = "index.html";
+  });
+}
+
+if (scrollToTweet === "true") {
+  const authorInput = document.getElementById("post_content");
+  if (authorInput) {
+    authorInput.scrollIntoView({ behavior: "smooth", block: "center" });
+    authorInput.focus();
+  }
+  localStorage.removeItem("scrollToTweetBox");
+}
 
 let allSearchPosts = [];
 

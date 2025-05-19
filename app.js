@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (scrollToTweet === "true") {
-    const authorInput = document.getElementById("post_author");
+    const authorInput = document.getElementById("post_content");
     if (authorInput) {
       authorInput.scrollIntoView({ behavior: "smooth", block: "center" });
       authorInput.focus();
