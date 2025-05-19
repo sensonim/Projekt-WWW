@@ -125,3 +125,55 @@ async function LikePost(id) {
 document.addEventListener("DOMContentLoaded", () => {
     ShowPosts();
 });
+
+const API_URL = 'http://localhost:3000/posts';
+
+let allPosts = [];
+const postyDiv   = document.getElementById('posty');
+const searchBox  = document.getElementById('searchInput');
+const searchInfo = document.getElementById('searchInfo');
+async function loadPosts () {
+  try {
+    const res   = await fetch(API_URL);
+    allPosts    = await res.json();
+    renderPosts(allPosts);
+  } catch (err) {
+    console.error('Nie udało się pobrać postów:', err);
+  }
+}
+function renderPosts (posts) {
+  postyDiv.innerHTML = '';
+  if (!posts.length) {
+    postyDiv.innerHTML = '<p style="padding:1rem;">Brak wyników</p>';
+  }
+  posts.forEach(p => {
+    const postEl = document.createElement('div');
+    postEl.className = 'post';
+    postEl.innerHTML = `
+        <h3 class="post-title">${p.title ?? '(bez tytułu)'}</h3>
+        <p  class="post-content">${p.content ?? ''}</p>
+        <span class="post-author">${p.author ?? 'Anon'}</span>
+    `;
+    postyDiv.appendChild(postEl);
+  });
+  if (searchInfo) {
+    searchInfo.textContent = `Znaleziono: ${posts.length}`;
+    searchInfo.style.display = posts.length ? 'block' : 'none';
+  }
+}
+function filterPosts (query) {
+  if (!query) return allPosts;
+
+  const q = query.toLowerCase();
+  return allPosts.filter(p =>
+    (p.title   && p.title.toLowerCase().includes(q))   ||
+    (p.content && p.content.toLowerCase().includes(q)) ||
+    (p.author  && p.author.toLowerCase().includes(q))
+  );
+}
+searchBox.addEventListener('input', (e) => {
+  const value = e.target.value.trim();
+  const hits  = filterPosts(value);
+  renderPosts(hits);
+});
+document.addEventListener('DOMContentLoaded', loadPosts);
