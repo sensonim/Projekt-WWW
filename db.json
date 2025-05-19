@@ -2,27 +2,104 @@
   "posts": [
     {
       "id": 1,
-      "title": "Pierwszy post z lajkami",
-      "content": "To jest treść posta.",
-      "likes": 0
+      "title": "Post 1",
+      "content": "Pierwszy testowy post"
     },
     {
       "id": 2,
       "title": "Post 2",
-      "content": "Drugi testowy post",
-      "likes": 0
+      "content": "Drugi testowy post"
     },
     {
-      "title": "test",
-      "content": "test",
-      "likes": 0,
+      "title": "Test 3",
+      "content": "tak",
+      "id": 3
+    },
+    {
+      "title": "Chuj",
+      "content": "G w dupe",
       "id": 4
     },
     {
-      "title": "ja",
-      "content": "piszę",
+      "title": "nie",
+      "content": "tak",
+      "id": 5,
+      "likes": 1
+    },
+    {
+      "title": "tak",
+      "content": "nie",
+      "id": 6,
+      "likes": 1
+    },
+    {
+      "title": "a",
+      "content": "s",
+      "id": 7
+    },
+    {
+      "title": "",
+      "content": "",
+      "id": 8
+    },
+    {
+      "title": "",
+      "content": "",
+      "id": 9
+    },
+    {
+      "title": "",
+      "content": "",
+      "id": 10,
+      "likes": null
+    },
+    {
+      "title": "",
+      "content": "",
+      "id": 11,
+      "likes": 1
+    },
+    {
+      "title": "aa",
+      "content": "ss",
+      "id": 12,
+      "likes": 1
+    },
+    {
+      "title": "Just a Chill Guy",
+      "content": "I'm chilling",
+      "id": 13,
+      "likes": 1
+    },
+    {
+      "title": "Another Chiller",
+      "content": "Me2",
       "likes": 1,
-      "id": 5
+      "id": 14
+    },
+    {
+      "title": "Just a Chill Guy",
+      "content": "Bored... Thinking of my sleep deprivation demons",
+      "likes": 1,
+      "id": 15
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Another post",
+      "likes": 1,
+      "id": 16
+    },
+    {
+      "author": "Another Chiller",
+      "content": "Howdy?",
+      "likes": 1,
+      "id": 17
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Good u?",
+      "likes": 1,
+      "id": 18
     }
   ]
 }
