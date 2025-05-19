@@ -3,7 +3,7 @@
     {
       "author": "Just a Chill Guy",
       "content": "Another post",
-      "likes": 530,
+      "likes": 531,
       "id": 16
     },
     {
@@ -15,20 +15,26 @@
     {
       "author": "Just a Chill Guy",
       "content": "Good u?",
-      "likes": 1,
+      "likes": 2,
       "id": 18
     },
     {
       "author": "Just a Chill Guy",
       "content": "tak",
-      "likes": 80,
+      "likes": 81,
       "id": 19
     },
     {
       "author": "Just a Chill Guy",
       "content": "działa?",
-      "likes": 3,
+      "likes": 4,
       "id": 20
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Another one bites the Dust",
+      "likes": 1,
+      "id": 21
     }
   ]
 }

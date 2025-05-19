@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   ShowPosts();
+  loadPosts();
+  ShowTopPosts();
 });
 
 async function FetchData(path = '', options = { method: 'GET' }) {
@@ -67,9 +69,9 @@ async function ShowPosts(){
 };
     
 
-function StrukturaPosta(post){
+function StrukturaPosta(post) {
     return `
-    <div class="kontener_post">
+    <div class="kontener_post" id="post-${post.id}">
         <div class="post_body">
             <div class="post_header">
                 <div class="post_header_text">
@@ -179,4 +181,23 @@ searchBox.addEventListener('input', (e) => {
   const hits  = filterPosts(value);
   renderPosts(hits);
 });
-document.addEventListener('DOMContentLoaded', loadPosts);
+
+async function ShowTopPosts() {
+  const posts = await FetchData('/posts?_sort=likes&_order=desc&_limit=5');
+  const container = document.getElementById("widgets_widgetContainer");
+
+  if (container) {
+    let topPostsHTML = "<h3>Na topie</h3>";
+    posts.forEach(post => {
+      topPostsHTML += `
+        <div class="top_post">
+          <a href="#post-${post.id}" class="top_post_link">
+            <p><strong>${post.author}</strong>: ${post.content}</p>
+            <p>❤️ ${post.likes} polubień</p>
+          </a>
+        </div>
+      `;
+    });
+    container.innerHTML = topPostsHTML;
+  }
+}

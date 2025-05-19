@@ -402,16 +402,77 @@ a,
   color: var(--search-icon-color);
 }
 
-.widgets_widgetContainer {
-  margin: 15px 0 0 20px;
-  padding: 20px;
-  border-radius: 20px;
-  background: var(--widgets-background);
-}
-
+/* Widgets_Container (Co się dzieje?) */
 .widgets_widgetContainer h2 {
   font-size: 18px;
   font-weight: 800;
+}
+
+#widgets_widgetContainer {
+  background: var(--widgets-background);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 15px 0 0 20px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#widgets_widgetContainer h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: #14171a;
+}
+
+.top_post {
+  border-bottom: 1px solid #e1e8ed;
+  padding: 0.5rem 0;
+}
+
+.top_post:last-child {
+  border-bottom: none;
+}
+
+.top_post p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.top_post_link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: background-color 0.2s;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+}
+
+.top_post_link:hover {
+  background-color: #e8f5fd;
+}
+
+/* darkmode "co sie dzieje?" */
+
+.darkmode #widgets_widgetContainer {
+  background-color: #1c1e22;
+  color: #e1e8ed;
+}
+
+.darkmode #widgets_widgetContainer h3 {
+  color: #e1e8ed;
+}
+
+.darkmode .top_post p {
+  color: #ccc;
+}
+
+.darkmode .top_post {
+  border-color: #333;
+}
+
+.darkmode .top_post_link:hover {
+  background-color: #2a2e33;
 }
 
 /* Pasek Dolny */
