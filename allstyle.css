@@ -326,7 +326,6 @@ a,
 .dodaj_post {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .author{
@@ -462,4 +461,25 @@ a,
   color: var(--mode-switch-text);
   font-weight: 600;
   cursor: pointer;
+}
+
+.avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 20px;
+}
+
+.avatar-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color, #000);
+  margin-top: 15px;
+}
+
+.avatar {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }

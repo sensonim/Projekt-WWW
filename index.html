@@ -46,9 +46,14 @@
          <div class="tweetBox">
             <form>
             <div class = "dodaj_post">
-                <input class="author" type="text" id="post_author" placeholder="Kto pisze?">
+                <div class="avatar">
+                <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_200x200.png"/>
+                <span class="avatar-name">Just a Chill Guy</span>
+                </div>
+                <div class="post_input">
                 <textarea class="content" id="post_content" placeholder="Jak tam leci?" maxlength="350"></textarea>
                 <div class="charCount" id="charCount">0 / 350</div>
+                </div>
             </div>
             <button class="tweetBoxButton" onclick="DodajPostPrzycisk()">
                 Dodaj Tweet

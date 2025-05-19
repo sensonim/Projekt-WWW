@@ -91,7 +91,7 @@ function DodajPost(author, content){
     FetchData('/posts', { method: 'POST', 
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
-            author: author,
+            author: "Just a Chill Guy",
             content: content,
             likes: 0
         })

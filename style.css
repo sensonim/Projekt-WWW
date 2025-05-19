@@ -114,7 +114,16 @@ body {
 
 .dodaj_post {
     display: flex;
+    gap: 10px;
     padding: 20px;
+    align-items: flex-start;
+}
+
+.avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .author{
@@ -141,7 +150,7 @@ body {
     margin-left: auto;
 }
 
-.post_avatar img {
+.post_avatar_img {
     border-radius: 50%;
     height: 40px;
 }

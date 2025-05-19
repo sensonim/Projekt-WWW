@@ -98,8 +98,14 @@
     {
       "author": "Just a Chill Guy",
       "content": "Good u?",
-      "likes": 1,
+      "likes": 0,
       "id": 18
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "tak",
+      "likes": 0,
+      "id": 19
     }
   ]
 }
