@@ -3,7 +3,7 @@
     {
       "author": "Just a Chill Guy",
       "content": "Another post",
-      "likes": 531,
+      "likes": 532,
       "id": 16
     },
     {
@@ -35,6 +35,12 @@
       "content": "Another one bites the Dust",
       "likes": 1,
       "id": 21
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "test post",
+      "likes": 0,
+      "id": 22
     }
   ]
 }
