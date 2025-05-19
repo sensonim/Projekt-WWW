@@ -87,7 +87,7 @@ function StrukturaPosta(post){
     </div>`;
 }
 
-function DodajPost(author, content){
+function DodajPost(content){
     FetchData('/posts', { method: 'POST', 
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -99,10 +99,10 @@ function DodajPost(author, content){
 }
 
 function DodajPostPrzycisk(){
-    if (document.getElementById('post_author').value.trim() == "" || document.getElementById('post_content').value.trim() == "")
-        alert("Pole tytuł i treść nie mogą być puste");
+    if (document.getElementById('post_content').value.trim() == "")
+        alert("Pole treść nie może być puste");
     else{
-        DodajPost(document.getElementById('post_author').value.trim(), document.getElementById('post_content').value.trim());
+        DodajPost(document.getElementById('post_content').value.trim());
 
     }
 
