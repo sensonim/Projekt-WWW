@@ -543,6 +543,7 @@ a,
   display: flex;
   align-items: flex-start;
   gap: 10px;
+  padding-top: 10px;
 }
 
 /* Search Feed */
