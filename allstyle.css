@@ -429,25 +429,18 @@ a,
   background-color: #f0f0f0;
 }
 
-.darkmode .suggestions-box {
-  background-color: #15202b;
-  color: white;
-  border-color: #38444d;
+.darkmode #searchSuggestions {
+  background: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-.suggestion-item {
-  padding: 10px;
-  cursor: pointer;
+.darkmode .listbox-item {
+  color: #f1f1f1;
 }
 
-.suggestion-item:hover {
-  background-color: #f5f8fa;
+.darkmode .listbox-item:hover {
+  background-color: #333;
 }
-
-.darkmode .suggestion-item:hover {
-  background-color: #1e2a38;
-}
-
 
 /* Widgets_Container (Co się dzieje?) */
 .widgets_widgetContainer h2 {
