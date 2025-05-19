@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const goToTweetButton = document.getElementById("goToTweetBox");
   const scrollToTweet = localStorage.getItem("scrollToTweetBox");
 
+  // Obsługa licznika znaków w textarea
   if (textarea && counter) {
     textarea.addEventListener("input", () => {
       const length = textarea.value.length;
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Obsługa przycisku przenoszącego użytkownika do tweetBoxa
   if (goToTweetButton) {
     goToTweetButton.addEventListener("click", () => {
       localStorage.setItem("scrollToTweetBox", "true");
@@ -19,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Automatyczne przewinięcie do tweetBoxa
   if (scrollToTweet === "true") {
     const authorInput = document.getElementById("post_content");
     if (authorInput) {
@@ -28,49 +31,54 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("scrollToTweetBox");
   }
 
+  // Wywołanie funkcji ładujących posty
   ShowPosts();
   loadPosts();
   ShowTopPosts();
 });
 
+// Funkcja do pobierania danych z backendu
 async function FetchData(path = '', options = { method: 'GET' }) {
-    const url = 'http://localhost:3000' + path;
-    const promise = await fetch(url, options);
-    try {
-        return promise.json();
-    }
-    catch (error) {
-        console.error(error);
-        return null;
-    }
+  const url = 'http://localhost:3000' + path;
+  const promise = await fetch(url, options);
+  try {
+    return promise.json(); // Zwraca dane jako JSON
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-async function ShowPosts(){
-    const posts = await FetchData('/posts?_sort=id&_order=desc');
-    const kontener = document.getElementById("posty");
-    const myPosts = document.getElementById("my_posts");
+// Wyświetlanie wszystkich postów oraz filtracja 
+async function ShowPosts() {
+  const posts = await FetchData('/posts?_sort=id&_order=desc');
+  const kontener = document.getElementById("posty");
+  const myPosts = document.getElementById("my_posts");
 
-    if (kontener){
-        let allPost = "";
-        posts.forEach(function (post){
-            allPost += StrukturaPosta(post);
-        });
-        kontener.innerHTML = allPost;
-    }
-    if (myPosts){
-        let myPost = "";
-        posts
-            .filter(post => post.author === "Just a Chill Guy")
-            .forEach(post => {
-                myPost += StrukturaPosta(post);
-            });
-        myPosts.innerHTML = myPost;
-    }
-};
-    
+  // Wszystkie posty
+  if (kontener) {
+    let allPost = "";
+    posts.forEach(function (post) {
+      allPost += StrukturaPosta(post);
+    });
+    kontener.innerHTML = allPost;
+  }
 
+  // Posty użytkownika "Just a Chill Guy"
+  if (myPosts) {
+    let myPost = "";
+    posts
+      .filter(post => post.author === "Just a Chill Guy")
+      .forEach(post => {
+        myPost += StrukturaPosta(post);
+      });
+    myPosts.innerHTML = myPost;
+  }
+}
+
+// Strukturę HTML posta w feed
 function StrukturaPosta(post) {
-    return `
+  return `
     <div class="kontener_post" id="post-${post.id}">
         <div class="post_body">
             <div class="post_header">
@@ -89,28 +97,30 @@ function StrukturaPosta(post) {
     </div>`;
 }
 
-function DodajPost(content){
-    FetchData('/posts', { method: 'POST', 
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            author: "Just a Chill Guy",
-            content: content,
-            likes: 0
-        })
-     });
+// Dodawanie nowego posta do bazy
+function DodajPost(content) {
+  FetchData('/posts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      author: "Just a Chill Guy",
+      content: content,
+      likes: 0
+    })
+  });
 }
 
-function DodajPostPrzycisk(){
-    if (document.getElementById('post_content').value.trim() == "")
-        alert("Treść posta nie może być pusta");
-    else{
-        DodajPost(document.getElementById('post_content').value.trim());
-
-    }
-
-    ShowPosts();
+// Wywołanie dodania posta po kliknięciu przycisku
+function DodajPostPrzycisk() {
+  if (document.getElementById('post_content').value.trim() == "")
+    alert("Treść posta nie może być pusta");
+  else {
+    DodajPost(document.getElementById('post_content').value.trim());
+  }
+  ShowPosts(); // Odświeżenie listy postów
 }
 
+// Obsługa likeów postu
 async function LikePost(id) {
   const storageKey = `liked_post_${id}`;
   const alreadyLiked = localStorage.getItem(storageKey) === "true";
@@ -118,65 +128,65 @@ async function LikePost(id) {
   const post = await FetchData(`/posts/${id}`);
   const updatedLikes = alreadyLiked ? post.likes - 1 : post.likes + 1;
 
-
   await FetchData(`/posts/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ likes: updatedLikes })
   });
 
-
   localStorage.setItem(storageKey, (!alreadyLiked).toString());
 
-
+  // Aktualizacja liczby lajków w DOM
   document.getElementById(`like-count-${id}`).textContent = updatedLikes;
-
-
 }
 
-
+// Odświeżenie postów po załadowaniu DOM
 document.addEventListener("DOMContentLoaded", () => {
-    ShowPosts();
+  ShowPosts();
 });
 
 const API_URL = 'http://localhost:3000/posts';
-
 let allPosts = [];
-const postyDiv   = document.getElementById('posty');
-const searchBox  = document.getElementById('searchInput');
+const postyDiv = document.getElementById('posty');
+const searchBox = document.getElementById('searchInput');
 const searchInfo = document.getElementById('searchInfo');
-async function loadPosts () {
+
+// Pobiera i renderuje wszystkie posty
+async function loadPosts() {
   try {
-    const res   = await fetch(API_URL);
-    allPosts    = await res.json();
+    const res = await fetch(API_URL);
+    allPosts = await res.json();
     renderPosts(allPosts);
   } catch (err) {
     console.error('Nie udało się pobrać postów:', err);
   }
 }
-function renderPosts (posts) {
+
+// Renderuje posty na stronie
+function renderPosts(posts) {
   postyDiv.innerHTML = '';
   if (!posts.length) {
     postyDiv.innerHTML = '<p style="padding:1rem;">Brak wyników</p>';
   }
   posts.forEach(post => {
-  postyDiv.innerHTML += StrukturaPosta(post);
-});
+    postyDiv.innerHTML += StrukturaPosta(post);
+  });
   if (searchInfo) {
     searchInfo.style.display = posts.length ? 'block' : 'none';
   }
 }
-function filterPosts (query) {
-  if (!query) return allPosts;
 
+// Filtruje posty
+function filterPosts(query) {
+  if (!query) return allPosts;
   const q = query.toLowerCase();
   return allPosts.filter(p =>
     (p.content && p.content.toLowerCase().includes(q)) ||
-    (p.author  && p.author.toLowerCase().includes(q))
+    (p.author && p.author.toLowerCase().includes(q))
   );
 }
 
-
+// Wyświetla Top 5 lajkowane posty
 async function ShowTopPosts() {
   const posts = await FetchData('/posts?_sort=likes&_order=desc&_limit=5');
   const container = document.getElementById("widgets_widgetContainer");
@@ -197,12 +207,14 @@ async function ShowTopPosts() {
   }
 }
 
+// Listbox wyszukiwanie w index.html
 const suggestionsBox = document.createElement("div");
 suggestionsBox.id = "searchSuggestions";
 suggestionsBox.className = "suggestions-box";
 searchBox.parentNode.style.position = "relative";
 searchBox.parentNode.appendChild(suggestionsBox);
 
+// Obsługa wpisywania w searchBox
 searchBox.addEventListener('input', (e) => {
   const value = e.target.value.trim();
   if (!value) {

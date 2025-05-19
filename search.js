@@ -1,9 +1,11 @@
+// Pobranie referencji do elementów DOM
 const searchInput = document.getElementById('searchInput');
 const searchInfo = document.getElementById('searchInfo');
 const resultsContainer = document.getElementById('search-posty');
 const goToTweetButton = document.getElementById("goToTweetBox");
 const scrollToTweet = localStorage.getItem("scrollToTweetBox");
 
+// Obsługa przycisku przechodzenia do pola wpisywania tweetaBoxa
 if (goToTweetButton) {
   goToTweetButton.addEventListener("click", () => {
     localStorage.setItem("scrollToTweetBox", "true");
@@ -11,6 +13,7 @@ if (goToTweetButton) {
   });
 }
 
+// Automatyczne przewinięcie do tweetBoxa
 if (scrollToTweet === "true") {
   const authorInput = document.getElementById("post_content");
   if (authorInput) {
@@ -22,6 +25,7 @@ if (scrollToTweet === "true") {
 
 let allSearchPosts = [];
 
+// Pobranie wszystkich postów z API
 async function FetchAllPosts() {
   try {
     const response = await fetch('http://localhost:3000/posts');
@@ -32,6 +36,7 @@ async function FetchAllPosts() {
   }
 }
 
+// Renderowanie wyników wyszukiwania
 function renderSearchResults(posts) {
   resultsContainer.innerHTML = "";
   const query = searchInput.value.trim();
@@ -46,6 +51,7 @@ function renderSearchResults(posts) {
     resultsContainer.innerHTML += StrukturaPostaSearch(post);
   });
 
+  // Pokazanie informacji o liczbie wyników
   if (query.length > 0) {
     searchInfo.textContent = `Znaleziono: ${posts.length}`;
     searchInfo.style.display = 'block';
@@ -54,6 +60,7 @@ function renderSearchResults(posts) {
   }
 }
 
+// Obsługa wpisywania w searchBox
 searchInput.addEventListener("input", (e) => {
   const query = e.target.value.trim().toLowerCase();
   const filtered = allSearchPosts.filter(post =>
@@ -63,12 +70,13 @@ searchInput.addEventListener("input", (e) => {
   renderSearchResults(filtered);
 });
 
+//Pobranie i wyświetlenie postów po załadowaniu strony
 document.addEventListener("DOMContentLoaded", async () => {
   await FetchAllPosts();
   renderSearchResults(allSearchPosts);
 });
 
-
+// Struktura posta generowanego w search.html
 function StrukturaPostaSearch(post) {
   return `
     <a href="index.html#post-${post.id}">
