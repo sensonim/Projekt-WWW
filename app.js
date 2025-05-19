@@ -100,7 +100,7 @@ function DodajPost(content){
 
 function DodajPostPrzycisk(){
     if (document.getElementById('post_content').value.trim() == "")
-        alert("Pole treść nie może być puste");
+        alert("Treść posta nie może być pusta");
     else{
         DodajPost(document.getElementById('post_content').value.trim());
 
@@ -110,17 +110,28 @@ function DodajPostPrzycisk(){
 }
 
 async function LikePost(id) {
-    const post = await FetchData(`/posts/${id}`);
-    const updatedLikes = (post.likes + 1) % 2;
+  const storageKey = `liked_post_${id}`;
+  const alreadyLiked = localStorage.getItem(storageKey) === "true";
 
-    await FetchData(`/posts/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ likes: updatedLikes })
-    });
+  const post = await FetchData(`/posts/${id}`);
+  const updatedLikes = alreadyLiked ? post.likes - 1 : post.likes + 1;
 
-    document.getElementById(`like-count-${id}`).textContent = updatedLikes;
+  // Aktualizacja na serwerze
+  await FetchData(`/posts/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ likes: updatedLikes })
+  });
+
+  // Zapisanie lokalnego stanu (true/false)
+  localStorage.setItem(storageKey, (!alreadyLiked).toString());
+
+  // Aktualizacja licznika
+  document.getElementById(`like-count-${id}`).textContent = updatedLikes;
+
+
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     ShowPosts();
