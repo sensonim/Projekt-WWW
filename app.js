@@ -175,11 +175,7 @@ function filterPosts (query) {
     (p.author  && p.author.toLowerCase().includes(q))
   );
 }
-searchBox.addEventListener('input', (e) => {
-  const value = e.target.value.trim();
-  const hits  = filterPosts(value);
-  renderPosts(hits);
-});
+
 
 async function ShowTopPosts() {
   const posts = await FetchData('/posts?_sort=likes&_order=desc&_limit=5');
@@ -200,3 +196,32 @@ async function ShowTopPosts() {
     container.innerHTML = topPostsHTML;
   }
 }
+
+const suggestionsBox = document.createElement("div");
+suggestionsBox.id = "searchSuggestions";
+suggestionsBox.className = "suggestions-box";
+searchBox.parentNode.style.position = "relative";
+searchBox.parentNode.appendChild(suggestionsBox);
+
+searchBox.addEventListener('input', (e) => {
+  const value = e.target.value.trim();
+  if (!value) {
+    suggestionsBox.style.display = 'none';
+    return;
+  }
+
+  const results = filterPosts(value).slice(0, 5);
+  suggestionsBox.innerHTML = '';
+
+  results.forEach(post => {
+    const item = document.createElement('div');
+    item.className = 'listbox-item';
+    item.textContent = `${post.author}: ${post.content.slice(0, 60)}...`;
+    item.addEventListener('click', () => {
+      window.location.href = `index.html#post-${post.id}`;
+    });
+    suggestionsBox.appendChild(item);
+  });
+
+  suggestionsBox.style.display = results.length ? 'block' : 'none';
+});

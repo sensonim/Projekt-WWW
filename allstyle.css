@@ -382,6 +382,7 @@ a,
 }
 
 .widgets_input {
+  position: relative;
   display: flex;
   align-items: center;
   margin: 10px 0 0 20px;
@@ -401,6 +402,52 @@ a,
 .widgets_searchIcon {
   color: var(--search-icon-color);
 }
+
+/* Widgets Listbox */
+
+#searchSuggestions {
+  position: absolute;
+  background: white;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  top: 100%;
+  left: 0;
+}
+
+.listbox-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listbox-item:hover {
+  background-color: #f0f0f0;
+}
+
+.darkmode .suggestions-box {
+  background-color: #15202b;
+  color: white;
+  border-color: #38444d;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f8fa;
+}
+
+.darkmode .suggestion-item:hover {
+  background-color: #1e2a38;
+}
+
 
 /* Widgets_Container (Co się dzieje?) */
 .widgets_widgetContainer h2 {
