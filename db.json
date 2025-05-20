@@ -41,6 +41,24 @@
       "content": "test post",
       "likes": 0,
       "id": 22
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Jeszcze jeden post",
+      "likes": 0,
+      "id": 23
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Hello",
+      "likes": 0,
+      "id": 24
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "33",
+      "likes": 0,
+      "id": 25
     }
   ],
   "comments": [
