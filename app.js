@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const counter = document.getElementById("charCount");
   const goToTweetButton = document.getElementById("goToTweetBox");
   const scrollToTweet = localStorage.getItem("scrollToTweetBox");
+  const scrollToPostId = localStorage.getItem("scrollToPostId");
 
-  // Obsługa licznika znaków w textarea
+  // Obsługa licznika znaków
   if (textarea && counter) {
     textarea.addEventListener("input", () => {
       const length = textarea.value.length;
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Obsługa przycisku przenoszącego użytkownika do tweetBoxa
+  // Obsługa przycisku tweetBoxa
   if (goToTweetButton) {
     goToTweetButton.addEventListener("click", () => {
       localStorage.setItem("scrollToTweetBox", "true");
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Automatyczne przewinięcie do tweetBoxa
+  // Przewinięcie do tweetBoxa
   if (scrollToTweet === "true") {
     const authorInput = document.getElementById("post_content");
     if (authorInput) {
@@ -31,8 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("scrollToTweetBox");
   }
 
-  // Wywołanie funkcji ładujących posty
-  ShowPosts();
+  // Załaduj posty, a potem spróbuj scrollować do konkretnego ID
+  ShowPosts().then(() => {
+    if (scrollToPostId) {
+      const tryScroll = () => {
+        const target = document.querySelector(`[data-id="${scrollToPostId}"]`);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          target.classList.add("highlight-post");
+          localStorage.removeItem("scrollToPostId");
+        } else {
+          // Poczekaj chwilę i spróbuj ponownie, jeśli post jeszcze się nie wyrenderował
+          setTimeout(tryScroll, 300);
+        }
+      };
+      tryScroll();
+    }
+  });
+
   loadPosts();
   ShowTopPosts();
 });
@@ -208,16 +225,28 @@ async function ShowTopPosts() {
     posts.forEach(post => {
       topPostsHTML += `
         <div class="top_post">
-          <a href="#post-${post.id}" class="top_post_link">
+          <div class="top_post_link" data-id="${post.id}" style="cursor: pointer;">
             <p><strong>${post.author}</strong>: ${post.content}</p>
             <p>❤️ ${post.likes} polubień</p>
-          </a>
+          </div>
         </div>
       `;
     });
     container.innerHTML = topPostsHTML;
   }
 }
+document.addEventListener("click", (e) => {
+  const target = e.target.closest(".top_post_link");
+  if (target) {
+    const postId = target.dataset.id;
+    window.location.hash = `post-${postId}`;
+
+    const postElement = document.querySelector(`[data-id="${postId}"]`);
+    if (postElement) {
+      postElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+});
 
 // Listbox wyszukiwanie w index.html
 const suggestionsBox = document.createElement("div");
@@ -241,8 +270,15 @@ searchBox.addEventListener('input', (e) => {
     const item = document.createElement('div');
     item.className = 'listbox-item';
     item.textContent = `${post.author}: ${post.content.slice(0, 60)}...`;
-    item.addEventListener('click', () => {
-      window.location.href = `index.html#post-${post.id}`;
+    item.addEventListener("click", () => {
+      window.location.hash = `post-${post.id}`;
+
+      const postElement = document.querySelector(`[data-id="${post.id}"]`);
+      if (postElement) {
+        postElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      suggestionsBox.style.display = "none";
     });
     suggestionsBox.appendChild(item);
   });

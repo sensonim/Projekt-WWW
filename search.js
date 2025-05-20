@@ -5,25 +5,24 @@ const resultsContainer = document.getElementById('search-posty');
 const goToTweetButton = document.getElementById("goToTweetBox");
 const scrollToTweet = localStorage.getItem("scrollToTweetBox");
 
-// Obsługa przycisku przechodzenia do pola wpisywania tweetaBoxa
-if (goToTweetButton) {
-  goToTweetButton.addEventListener("click", () => {
-    localStorage.setItem("scrollToTweetBox", "true");
-    window.location.href = "index.html";
-  });
-}
-
-// Automatyczne przewinięcie do tweetBoxa
-if (scrollToTweet === "true") {
-  const authorInput = document.getElementById("post_content");
-  if (authorInput) {
-    authorInput.scrollIntoView({ behavior: "smooth", block: "center" });
-    authorInput.focus();
-  }
-  localStorage.removeItem("scrollToTweetBox");
-}
-
 let allSearchPosts = [];
+
+// Struktura posta generowanego w search.html
+function StrukturaPostaSearch(post) {
+  return `
+    <div class="kontener_post link-post" data-id="${post.id}" style="cursor:pointer;">
+      <div class="post_body">
+        <div class="post_header">
+          <div class="post_header_text">
+            <h3>${post.author}</h3>
+          </div>
+          <div class="post_content_text">
+              <p>${post.content}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
 
 // Pobranie wszystkich postów z API
 async function FetchAllPosts() {
@@ -43,7 +42,7 @@ function renderSearchResults(posts) {
 
   if (!posts.length) {
     resultsContainer.innerHTML = "<p style='padding:1rem;'>Brak wyników</p>";
-    searchInfo.style.display = 'none';
+    searchInfo.style.display = "none";
     return;
   }
 
@@ -58,6 +57,15 @@ function renderSearchResults(posts) {
   } else {
     searchInfo.style.display = 'none';
   }
+
+  // Obsługa kliknięć w wyniki
+  document.querySelectorAll(".link-post").forEach(post => {
+    post.addEventListener("click", () => {
+      const postId = post.dataset.id;
+      localStorage.setItem("scrollToPostId", postId);
+      window.location.href = "index.html";
+    });
+  });
 }
 
 // Obsługa wpisywania w searchBox
@@ -70,27 +78,26 @@ searchInput.addEventListener("input", (e) => {
   renderSearchResults(filtered);
 });
 
-//Pobranie i wyświetlenie postów po załadowaniu strony
+// Pobranie i wyświetlenie postów po załadowaniu strony
 document.addEventListener("DOMContentLoaded", async () => {
   await FetchAllPosts();
   renderSearchResults(allSearchPosts);
 });
 
-// Struktura posta generowanego w search.html
-function StrukturaPostaSearch(post) {
-  return `
-    <a href="index.html#post-${post.id}">
-    <div class="kontener_post">
-      <div class="post_body">
-        <div class="post_header">
-          <div class="post_header_text">
-            <h3>${post.author}</h3>
-          </div>
-          <div class="post_content_text">
-              <p>${post.content}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    </a>`;
+// Obsługa przycisku przechodzenia do pola wpisywania tweetaBoxa
+if (goToTweetButton) {
+  goToTweetButton.addEventListener("click", () => {
+    localStorage.setItem("scrollToTweetBox", "true");
+    window.location.href = "index.html";
+  });
+}
+
+// Automatyczne przewinięcie do tweetBoxa
+if (scrollToTweet === "true") {
+  const authorInput = document.getElementById("post_content");
+  if (authorInput) {
+    authorInput.scrollIntoView({ behavior: "smooth", block: "center" });
+    authorInput.focus();
+  }
+  localStorage.removeItem("scrollToTweetBox");
 }
