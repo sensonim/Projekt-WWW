@@ -628,7 +628,8 @@ a,
 .post_comments {
   margin-top: 1rem;
   padding: 0.5rem;
-  background: #f2f2f2;
+  background: var(--back-color);
+  color: var(--text-color);
   border-radius: 10px;
 }
 
