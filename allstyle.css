@@ -457,20 +457,16 @@ a,
   color: var(--text-color);
 }
 
-.top_post {
-  border-bottom: 1px solid var(--hover-box-color);
-  padding: 0.5rem 0;
+.top_post p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
 }
 
 .top_post:last-child {
   border-bottom: none;
 }
 
-.top_post p {
-  margin: 0.2rem 0;
-  font-size: 0.95rem;
-  color: var(--bottom-bar-border-color);
-}
 
 .top_post_link {
   text-decoration: none;
