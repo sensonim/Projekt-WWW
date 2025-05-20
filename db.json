@@ -1,19 +1,83 @@
 {
   "posts": [
     {
+      "author": "Just a Chill Guy",
+      "content": "Another post",
+      "likes": 531,
+      "id": 16
+    },
+    {
+      "author": "Another Chiller",
+      "content": "Howdy?",
+      "likes": 20,
+      "id": 17
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Good u?",
+      "likes": 2,
+      "id": 18
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "tak",
+      "likes": 81,
+      "id": 19
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "działa?",
+      "likes": 3,
+      "id": 20
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "Another one bites the Dust",
+      "likes": 0,
+      "id": 21
+    },
+    {
+      "author": "Just a Chill Guy",
+      "content": "test post",
+      "likes": 1,
+      "id": 22
+    }
+  ],
+  "comments": [
+    {
       "id": 1,
-      "title": "Post 1",
-      "content": "Pierwszy testowy post"
+      "postId": 16,
+      "author": "Ktoś",
+      "content": "Super wpis!",
+      "likes": 6
     },
     {
       "id": 2,
-      "title": "Post 2",
-      "content": "Drugi testowy post"
+      "postId": 16,
+      "author": "Ktoś inny",
+      "content": "Zgadzam się!",
+      "likes": 46
     },
     {
-      "title": "Test 3",
+      "id": 13,
+      "postId": 20,
+      "author": "Ja",
       "content": "tak",
-      "id": 3
+      "likes": 2
+    },
+    {
+      "postId": 22,
+      "author": "Just a Chill Guy",
+      "content": "ok",
+      "likes": 1,
+      "id": 14
+    },
+    {
+      "postId": 22,
+      "author": "Just a Chill Guy",
+      "content": "Nuh UH",
+      "likes": 0,
+      "id": 15
     }
   ]
 }

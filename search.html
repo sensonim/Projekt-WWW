@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klon twittera</title>
+    <link rel="stylesheet" href="allstyle.css">
+    <link rel="icon" href="ikona.ico" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="darkmode.js" defer></script>
+</head>
+<body id="body">
+    <!-- sidebar-->
+    <div class="sidebar">
+        <img class="logo" src="logo.png" alt="Logo 'Tweeter-a'" width="150" height="150">
+
+        <a href="index.html">
+        <div class="sidebarOption">
+            <span class="material-icons"> home </span>
+            <h2>Home</h2>
+        </div>
+        </a>
+
+        <a href="search.html">
+        <div class="sidebarOption active">
+            <span class="material-icons"> search </span>
+            <h2>Search</h2>
+        </div>
+        </a>
+
+        <a href="profile.html">
+        <div class="sidebarOption">
+            <span class="material-icons"> person </span>
+            <h2>Profile</h2>
+        </div>
+        </a>
+
+        <button class="sidebar_tweet" id="goToTweetBox">Tweet</button>
+    </div>
+    <!-- sidebar-->
+
+    <!-- WidgetsFeed-->
+    <div class="widgetsFeed">
+        <div class="widgets_input">
+           <span class="material-icons widgets_searchIcon">search</span>
+        <input id="searchInput" type="text" placeholder="Przeszukaj Tweeter">
+    </div>
+
+    <div id="searchInfo" class="search-info"></div>  <!-- licznik wyników -->
+
+
+        <div id="search-posty"></div>
+    </div>
+ 
+
+</body>
+<script src="search.js"></script>
+</html>
