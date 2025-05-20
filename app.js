@@ -79,23 +79,35 @@ async function ShowPosts() {
 // Strukturę HTML posta w feed
 function StrukturaPosta(post) {
   return `
-    <div class="kontener_post" id="post-${post.id}">
-        <div class="post_body">
-            <div class="post_header">
-                <div class="post_header_text">
-                    <h3>${post.author}</h3>
-                </div>
-                <div class="post_content_text">
-                    <p>${post.content}</p>
-                </div>
-                <div class="post_likes">
-                    <button onclick="LikePost(${post.id})">❤️</button>
-                    <span id="like-count-${post.id}">${post.likes}</span> polubień
-                </div>
-            </div>
+    <div class="kontener_post" data-id="${post.id}">
+      <div class="post_body">
+        <div class="post_header">
+          <div class="post_header_text">
+            <h3>${post.author}</h3>
+          </div>
+          <div class="post_content_text">
+            <p>${post.content}</p>
+          </div>
+          <div class="post_likes">
+            <button onclick="LikePost(${post.id})">❤️</button>
+            <span id="like-count-${post.id}">${post.likes}</span> polubień
+          </div>
         </div>
-    </div>`;
+        <div class="post_actions">
+          <button onclick="ToggleComments(${post.id})">💬 Komentarze</button>
+        </div>
+        <div class="post_comments" id="comments-${post.id}" hidden>
+          <div class="comments-list"></div>
+          <form onsubmit="return AddComment(event, ${post.id})">
+            <input type="text" name="comment_content" placeholder="Twój komentarz..." required />
+            <button type="submit">Dodaj</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
 }
+
 
 // Dodawanie nowego posta do bazy
 function DodajPost(content) {
@@ -237,3 +249,70 @@ searchBox.addEventListener('input', (e) => {
 
   suggestionsBox.style.display = results.length ? 'block' : 'none';
 });
+
+async function ToggleComments(postId) {
+  const commentsContainer = document.getElementById(`comments-${postId}`);
+  const list = commentsContainer.querySelector('.comments-list');
+
+  if (commentsContainer.hidden) {
+    const comments = await FetchData(`/comments?postId=${postId}`);
+    list.innerHTML = comments.map(c =>
+  `<p>
+    <strong>${c.author}</strong>: ${c.content}
+    <button onclick="LikeComment(${c.id})" class="comment-like-btn" data-id="${c.id}">❤️</button>
+    <span id="comment-like-count-${c.id}">${c.likes}</span>
+  </p>`
+).join('');
+
+    commentsContainer.hidden = false;
+  } else {
+    commentsContainer.hidden = true;
+  }
+}
+
+async function AddComment(event, postId) {
+  event.preventDefault();
+  const form = event.target;
+  const content = form.comment_content.value.trim();
+
+  if (!content) return;
+
+  await FetchData('/comments', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      postId,
+      author: "Just a Chill Guy",
+      content,
+      likes: 0
+    })
+  });
+
+  form.reset();
+  ToggleComments(postId);  
+  ToggleComments(postId); 
+  return false;
+}
+
+
+async function LikeComment(commentId) {
+  const key = `liked_comment_${commentId}`;
+  const liked = localStorage.getItem(key) === "true";
+
+  const comment = await FetchData(`/comments/${commentId}`);
+  const updatedLikes = liked ? comment.likes - 1 : comment.likes + 1;
+
+  await FetchData(`/comments/${commentId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ likes: updatedLikes })
+  });
+
+  localStorage.setItem(key, (!liked).toString());
+
+  const count = document.getElementById(`comment-like-count-${commentId}`);
+  if (count) count.textContent = updatedLikes;
+
+  const btn = document.querySelector(`.comment-like-btn[data-id="${commentId}"]`);
+  if (btn) btn.classList.toggle('liked', !liked);
+}

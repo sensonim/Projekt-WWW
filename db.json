@@ -42,5 +42,35 @@
       "likes": 0,
       "id": 22
     }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 16,
+      "author": "Ktoś",
+      "content": "Super wpis!",
+      "likes": 6
+    },
+    {
+      "id": 2,
+      "postId": 16,
+      "author": "Ktoś inny",
+      "content": "Zgadzam się!",
+      "likes": 46
+    },
+    {
+      "id": 13,
+      "postId": 20,
+      "author": "Ja",
+      "content": "tak",
+      "likes": 2
+    },
+    {
+      "postId": 22,
+      "author": "Just a Chill Guy",
+      "content": "ok",
+      "likes": 1,
+      "id": 14
+    }
   ]
 }

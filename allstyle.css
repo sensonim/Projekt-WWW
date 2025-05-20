@@ -624,3 +624,21 @@ a,
 .widgetsFeed .widgets_searchIcon {
   color: var(--search-icon-color);
 }
+
+.post_comments {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #f2f2f2;
+  border-radius: 10px;
+}
+
+.post_comments form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.post_comments p {
+  margin: 4px 0;
+}
