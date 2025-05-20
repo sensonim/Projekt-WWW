@@ -3,7 +3,7 @@
     {
       "author": "Just a Chill Guy",
       "content": "Another post",
-      "likes": 532,
+      "likes": 531,
       "id": 16
     },
     {
@@ -27,38 +27,20 @@
     {
       "author": "Just a Chill Guy",
       "content": "działa?",
-      "likes": 5,
+      "likes": 3,
       "id": 20
     },
     {
       "author": "Just a Chill Guy",
       "content": "Another one bites the Dust",
-      "likes": 1,
+      "likes": 0,
       "id": 21
     },
     {
       "author": "Just a Chill Guy",
       "content": "test post",
-      "likes": 0,
+      "likes": 1,
       "id": 22
-    },
-    {
-      "author": "Just a Chill Guy",
-      "content": "Jeszcze jeden post",
-      "likes": 0,
-      "id": 23
-    },
-    {
-      "author": "Just a Chill Guy",
-      "content": "Hello",
-      "likes": 0,
-      "id": 24
-    },
-    {
-      "author": "Just a Chill Guy",
-      "content": "33",
-      "likes": 0,
-      "id": 25
     }
   ],
   "comments": [
@@ -89,6 +71,13 @@
       "content": "ok",
       "likes": 1,
       "id": 14
+    },
+    {
+      "postId": 22,
+      "author": "Just a Chill Guy",
+      "content": "Nuh UH",
+      "likes": 0,
+      "id": 15
     }
   ]
 }
