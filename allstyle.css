@@ -23,6 +23,10 @@
   --mode-switch-text: #ffffff;
   /* Ikona Wyszukiwania */
   --search-icon-color: gray;
+  /* Szukanie */
+  --Suggest-shadow-color: rgba(0,0,0,0.1);
+  --Suggest-back-color: white;
+  --hover-box-color: #f0f0f0;
 }
 
 .darkmode {
@@ -40,18 +44,11 @@
   --avatar-border: #000000;
   --button-primary-text: #000000;
   --mode-switch-text: #000000;
+  --Suggest-shadow-color: rgba(0,0,0,0.1);
+  --Suggest-back-color: white;
+  --hover-box-color: #f0f0f0;
 }
 
-.darkmode .author,
-.darkmode .content {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.darkmode .author::placeholder,
-.darkmode .content::placeholder {
-  color: #888888;
-}
 /* Reset domyślnych ustawień przeglądarki */
 *,
 *::before,
@@ -355,6 +352,12 @@ a,
   overflow-wrap: break-word;
   font-family: Arial, sans-serif;
   resize: vertical;
+  background-color: var(--back-color);
+  color: var(--text-color);
+}
+
+.darkmode .content::placeholder {
+  color: #888888;
 }
 
 .charCount {
@@ -407,12 +410,12 @@ a,
 
 #searchSuggestions {
   position: absolute;
-  background: white;
+  background: var(--Suggest-back-color);
   z-index: 1000;
   max-height: 200px;
   overflow-y: auto;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px var(--Suggest-shadow-color);
   top: 100%;
   left: 0;
 }
@@ -423,23 +426,11 @@ a,
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-color);
 }
 
 .listbox-item:hover {
-  background-color: #f0f0f0;
-}
-
-.darkmode #searchSuggestions {
-  background: #1e1e1e;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-}
-
-.darkmode .listbox-item {
-  color: #f1f1f1;
-}
-
-.darkmode .listbox-item:hover {
-  background-color: #333;
+  background-color: var(--hover-box-color);
 }
 
 /* Widgets_Container (Co się dzieje?) */
@@ -456,16 +447,18 @@ a,
   margin-top: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: background-color 0.3s, color 0.3s;
+  background-color: var(--back-color);
+  color: var(--text-color);
 }
 
 #widgets_widgetContainer h3 {
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
-  color: #14171a;
+  color: var(--text-color);
 }
 
 .top_post {
-  border-bottom: 1px solid #e1e8ed;
+  border-bottom: 1px solid var(--hover-box-color);
   padding: 0.5rem 0;
 }
 
@@ -476,7 +469,7 @@ a,
 .top_post p {
   margin: 0.2rem 0;
   font-size: 0.95rem;
-  color: #333;
+  color: var(--bottom-bar-border-color);
 }
 
 .top_post_link {
@@ -489,30 +482,7 @@ a,
 }
 
 .top_post_link:hover {
-  background-color: #e8f5fd;
-}
-
-/* darkmode "co sie dzieje?" */
-
-.darkmode #widgets_widgetContainer {
-  background-color: #1c1e22;
-  color: #e1e8ed;
-}
-
-.darkmode #widgets_widgetContainer h3 {
-  color: #e1e8ed;
-}
-
-.darkmode .top_post p {
-  color: #ccc;
-}
-
-.darkmode .top_post {
-  border-color: #333;
-}
-
-.darkmode .top_post_link:hover {
-  background-color: #2a2e33;
+  background-color: var(--hover-box-color);
 }
 
 /* Pasek Dolny */
